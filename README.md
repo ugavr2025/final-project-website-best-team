@@ -6,7 +6,6 @@ https://ugavr2025.github.io/final-project-website-best-team/
 * Jake Pearlman
   * Hey, I’m Jake Pearlman. I’m a senior Computer Science student. I enjoy building things that blur the lines between logic and creativity whether that’s a game, tool, or some random idea that popped into my head at 2 a.m. When I’m not behind a screen, you’ll probably find me on the golf course, playing a round of disc golf, or out fishing somewhere.
 * Axel Z.
-  * Bio
   * I'm Axel Zubieta. I'm a Computer Science major interested in exploring the evolving capabilities of Virtual Reality development. As a hobby, I enjoy playing the bass clarinet and the idea of creating virtual reality simulations involving music is something I want to learn more about. 
 
 ## Project Description
