@@ -1,182 +1,235 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<title>PuttPortal</title>
 </head>
 <body>
   <style>
+    /* --- 1. RESET & GLOBAL STYLES --- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      /* Apply font globally */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7f6; /* Soft off-white background */
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* --- 2. NAVIGATION --- */
     nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background-color: lightgrey;
-      margin: 0px;
-      padding: 10px;
-      border-radius: 2px;
-      transition: 200ms;
+      background-color: #1b262c; /* Dark slate */
+      padding: 15px 40px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky; /* Keeps nav at top */
+      top: 0;
+      z-index: 100;
     }
 
     .pagetitle {
-      font-size: 2em;
+      font-size: 1.5rem;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 1px;
     }
 
-    body {
-      background-color: darkcyan
+    /* Style the link to look like a button */
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      background-color: #2e8b57; /* Sea Green */
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.3s ease;
     }
 
+    nav a:hover {
+      background-color: #3cb371; /* Lighter Green */
+    }
+
+    /* --- 3. HERO SECTION --- */
     .title {
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      width: auto;
-      height: 800px;
-      padding: 1em;
-      background-color: cadetblue;
-      transition: 200ms;
-      background-image: url('images/screenshot.png');
+      width: 100%;
+      height: 80vh; /* Use Viewport Height instead of fixed pixels */
+      min-height: 500px;
+      padding: 2em;
+      text-align: center;
+      
+      /* Background with Overlay */
+      /* This gradient makes text readable on any image */
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('images/screenshot.png');
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
-    }
-
-    .font {
-      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
     }
 
     .nameofproject {
-      font-size: 3em;
-      background-color: cornflowerblue;
-      padding: 10px;
-      border-radius: 4px;
-      transition: 200ms;
-    }
-
-    .nameofproject:hover {
-      padding: 20px;
-      transition: 200ms;
-      background-color: aliceblue;
+      font-size: 4em;
+      font-weight: 800;
+      margin-bottom: 0.2em;
+      text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      /* Removed the box background for a cleaner look */
+      background-color: transparent; 
+      padding: 0;
     }
 
     .description {
-      font-size: 2em;
-      padding: 20px;
-      text-align: center;
+      font-size: 1.25em;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
-    nav:hover {
-      transition: 200ms;
-      background-color: beige;
+    .descbox {
+      /* Glassmorphism effect instead of solid color */
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      padding: 1.5em;
+      border-radius: 12px;
+      margin-top: 1em;
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    .title:hover {
-      transition: 200ms;
-      background-color: aquamarine;
-    }
-
+    /* --- 4. ABOUT SECTION --- */
     .aboutus {
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
-      padding: 1em;
-      background-color:darkseagreen;
-      transition: 200ms;
-      gap: 2em;
-    }
-
-    .aboutus:hover {
-      background-color: azure;
-      transition: 200ms;
+      align-items: center;
+      padding: 4em 2em;
+      background-color: #ffffff;
+      gap: 3em;
     }
 
     .aboutustitle {
-      font-size: 2em;
-      height: auto;
+      font-size: 2.5em;
+      font-weight: 700;
+      color: #1b262c;
+      position: relative;
+    }
+    
+    /* Decorative underline for title */
+    .aboutustitle::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background-color: #2e8b57;
+      margin: 10px auto 0;
+      border-radius: 2px;
     }
 
     .personalcardholder {
       display: flex;
-      justify-content: space-evenly;
-      align-items: center;
+      justify-content: center;
+      align-items: stretch; /* Makes cards equal height */
+      flex-wrap: wrap; /* Allows wrapping on smaller screens */
+      gap: 2em;
       width: 100%;
-      height: auto;
+      max-width: 1200px;
     }
 
-
-    .namesize {
-      font-size: 1.5em;
-    }
-
-    .biosize {
-      text-align: center;
-    }
-
+    /* --- 5. CARDS --- */
     .singlecard {
-      width: 20%;
-      height: 30em;
-      background-color: aliceblue;
-      border-radius: 5px;
-      transition: 200ms;
+      background-color: #fff;
+      border-radius: 16px;
+      /* Subtle shadow for depth */
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+      padding: 2.5em;
+      flex: 1; /* Cards grow to fill space */
+      min-width: 300px; /* Prevents them getting too skinny */
+      max-width: 350px;
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
       align-items: center;
-      padding: 3em;
-      font-size: 1.1em;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #eee;
     }
 
+    /* Smooth Lift Effect on Hover */
     .singlecard:hover {
-      width: 25%;
-      background-color:aquamarine;
-      transition: 200ms;
-      font-size: 1.3em;
+      transform: translateY(-10px); /* Moves up slightly */
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+      border-color: #2e8b57;
     }
 
     .imageshape {
-      border-radius: 20px;
-      width: 250px;
+      border-radius: 50%; /* Circular images look modern for profiles */
+      width: 150px;
       height: 150px;
+      object-fit: cover; /* Prevents image stretching */
+      margin-bottom: 1.5em;
+      border: 4px solid #f4f7f6;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
-    .descbox {
-      background-color: rgba(0, 236, 185, 0.501);
-      padding: 1em;
-      border-radius: 3px;
-      margin: 0.5em;
+    .namesize {
+      font-size: 1.4em;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 0.5em;
+      display: block;
     }
 
+    .biosize {
+      font-size: 0.95em;
+      color: #666;
+      line-height: 1.6;
+    }
 
   </style>
 
-  <nav class="hover font">
-    <span><b class="pagetitle">Best Team Project</b></span>
-    <span><a href="https://github.com/ugavr2025/final-project-code-best-team" target="_blank">📎Github</a></span>
+  <nav>
+    <span class="pagetitle">Best Team Project</span>
+    <a href="https://github.com/ugavr2025/final-project-code-best-team" target="_blank">
+       View on Github
+    </a>
   </nav>
+
   <div class="title">
-      <div class="font nameofproject"><b>⛳PuttPortal</b></div>
-      <div class="font description descbox">An MR-based virtual putting green</div>
-      <div class="font description descbox">A great way to practice putting without ever having to leave the comfort of your living room, and also compete with friends. Choose from a variety of putting green terrains, from easy to professional, and play with up to 4 friends!</div>
+      <div class="nameofproject">PuttPortal</div>
+      <div class="description descbox">
+        <strong>An MR-based virtual putting green</strong><br><br>
+        A great way to practice putting without ever having to leave the comfort of your living room. Choose from a variety of putting green terrains, from easy to professional, and compete with up to 4 friends!
+      </div>
   </div>
+
   <div class="aboutus">
-    <div class="font aboutustitle">☝️About The Team...</div>
+    <div class="aboutustitle">About The Team</div>
+    
     <div class="personalcardholder">
       <div class="singlecard">
-        <img src="images/placeholder.jpg" alt="placeholder" class="imageshape">
-        <span class="font namesize">Jake Perelman</span>
-        <span class="font biosize">Hey, I’m Jake Pearlman. I’m a senior Computer Science student. I enjoy building things that blur the lines between logic and creativity whether that’s a game, tool, or some random idea that popped into my head at 2 a.m. When I’m not behind a screen, you’ll probably find me on the golf course, playing a round of disc golf, or out fishing somewhere.</span>
+        <img src="images/placeholder.jpg" alt="Jake" class="imageshape">
+        <span class="namesize">Jake Perelman</span>
+        <span class="biosize">I’m a senior Computer Science student. I enjoy building things that blur the lines between logic and creativity whether that’s a game, tool, or some random idea. When I’m not behind a screen, you’ll find me on the golf course or fishing.</span>
       </div>
+
       <div class="singlecard">
-        <img src="images/placeholder.jpg" alt="placeholder" class="imageshape">
-        <span class="font namesize">Axel Zubieta</span>
-        <span class="font biosize">I'm Axel Zubieta. I'm a Computer Science major interested in exploring the evolving capabilities of Virtual Reality development. As a hobby, I enjoy playing the bass clarinet and the idea of creating virtual reality simulations involving music is something I want to learn more about.</span>
+        <img src="images/placeholder.jpg" alt="Axel" class="imageshape">
+        <span class="namesize">Axel Zubieta</span>
+        <span class="biosize">I'm a Computer Science major interested in exploring the evolving capabilities of Virtual Reality development. I enjoy playing the bass clarinet and creating virtual reality simulations involving music is something I want to learn more about.</span>
       </div>
+
       <div class="singlecard">
-        <img src="images/bhargav.jpg" alt="bhargav image" class="imageshape">
-        <span class="font namesize">Bhargav Gudapati</span>
-        <span class="font biosize">My name is bhargav gudapati, I am a fourth year computer science major, minoring in business. I enjoy walking my dog (pictured above) and bird watching (especially geese, they are fun to watch) and playing piano sometimes.</span>
+        <img src="images/bhargav.jpg" alt="Bhargav" class="imageshape">
+        <span class="namesize">Bhargav Gudapati</span>
+        <span class="biosize">I am a fourth year computer science major, minoring in business. I enjoy walking my dog and bird watching (especially geese, they are fun to watch) and playing piano sometimes.</span>
       </div>
     </div>
   </div>
+
 </body>
 </html>
